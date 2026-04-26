@@ -131,7 +131,7 @@
       <line x1="12" y1="22" x2="9" y2="24"/>
       <line x1="12" y1="22" x2="15" y2="24"/>
     </svg>
-    <span>Brain</span>&nbsp;Bee Initiative
+    <span>Brain Bee Initiative
   </div>
   <ul class="nav-links">
     <li><a href="#">About</a></li>
