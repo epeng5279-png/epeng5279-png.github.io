@@ -1,1 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brain Bee Initiative</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --warm-cream: #FBF7F0;
+    --warm-sand: #F0E8D8;
+    --warm-tan: #D9C9A8;
+    --deep-amber: #8B6914;
+    --rich-brown: #4A3210;
+    --soft-sage: #7A9E7E;
+    --deep-sage: #3D6B42;
+    --blush: #C97B5A;
+    --pale-blush: #F5E6DC;
+    --text-main: #2D2010;
+    --text-muted: #7A6645;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--warm-cream); color: var(--text-main); line-height: 1.7; overflow-x: hidden; }
+  nav { position: sticky; top: 0; background: rgba(251,247,240,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--warm-tan); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+  .nav-logo { font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600; color: var(--rich-brown); display: flex; align-items: center; gap: 0.5rem; }
+  .nav-logo span { color: var(--deep-sage); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 0.875rem; color: var(--text-muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--rich-brown); }
+  .nav-cta { background: var(--deep-sage); color: white !important; padding: 0.5rem 1.25rem; border-radius: 2rem; font-weight: 500 !important; }
 
+  .hero { padding: 5.5rem 2rem 3.5rem; max-width: 900px; margin: 0 auto; text-align: center; }
+  .hero-eyebrow { display: inline-block; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--deep-sage); background: #E8F2E9; padding: 0.35rem 1rem; border-radius: 2rem; margin-bottom: 1.5rem; }
+  .hero h1 { font-family: 'Lora', serif; font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1.2; color: var(--rich-brown); margin-bottom: 1.5rem; }
+  .hero h1 em { font-style: italic; color: var(--deep-sage); }
+  .hero-sub { font-size: 1.1rem; color: var(--text-muted); max-width: 620px; margin: 0 auto 2.5rem; font-weight: 300; }
+  .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--deep-sage); color: white; padding: 0.85rem 2rem; border-radius: 3rem; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: background 0.2s, transform 0.1s; display: inline-block; }
+  .btn-primary:hover { background: var(--rich-brown); transform: translateY(-1px); }
+  .btn-secondary { background: transparent; color: var(--rich-brown); border: 1.5px solid var(--warm-tan); padding: 0.85rem 2rem; border-radius: 3rem; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: border-color 0.2s, background 0.2s; display: inline-block; }
+  .btn-secondary:hover { border-color: var(--deep-amber); background: var(--warm-sand); }
+
+  .founded-by { background: white; border: 1px solid var(--warm-tan); border-radius: 1rem; padding: 1.25rem 1.75rem; max-width: 620px; margin: 2.5rem auto 0; display: flex; align-items: flex-start; gap: 1rem; text-align: left; }
+  .founded-icon { width: 44px; height: 44px; border-radius: 50%; background: #EFF6F0; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .founded-by h4 { font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--deep-sage); margin-bottom: 0.25rem; }
+  .founded-by p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.55; }
+  .founded-by p strong { color: var(--rich-brown); font-weight: 500; }
+
+  .bridge-visual { padding: 3rem 2rem; display: flex; align-items: center; justify-content: center; max-width: 700px; margin: 0 auto; }
+  .bridge-node { background: white; border: 1.5px solid var(--warm-tan); border-radius: 1rem; padding: 1.5rem 1.25rem; text-align: center; flex: 1; max-width: 200px; }
+  .bridge-node .node-icon { width: 40px; height: 40px; margin: 0 auto 0.75rem; display: flex; align-items: center; justify-content: center; }
+  .bridge-node h3 { font-family: 'Lora', serif; font-size: 1rem; color: var(--rich-brown); margin-bottom: 0.25rem; }
+  .bridge-node p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
+  .bridge-connector { flex: 1; position: relative; padding: 0 0.5rem; }
+  .bridge-line { height: 2px; background: linear-gradient(90deg, var(--warm-tan), var(--deep-sage), var(--warm-tan)); position: relative; margin: 0 0.5rem; }
+  .bridge-label { position: absolute; top: -1.5rem; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: var(--deep-sage); font-weight: 500; background: var(--warm-cream); padding: 0 0.5rem; }
+  .bridge-arrow { position: absolute; right: -5px; top: -5px; width: 12px; height: 12px; border-right: 2px solid var(--deep-sage); border-top: 2px solid var(--deep-sage); transform: rotate(45deg); }
+
+  .section { padding: 5rem 2rem; max-width: 960px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blush); font-weight: 500; margin-bottom: 0.5rem; }
+  .section h2 { font-family: 'Lora', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--rich-brown); margin-bottom: 1rem; }
+  .section-intro { font-size: 1rem; color: var(--text-muted); max-width: 560px; margin-bottom: 3rem; }
+
+  .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+  .step-card { background: white; border: 1px solid var(--warm-tan); border-radius: 1rem; padding: 1.75rem 1.5rem; }
+  .step-card .step-icon { width: 36px; height: 36px; margin-bottom: 1rem; }
+  .step-num { font-family: 'Lora', serif; font-size: 2.5rem; font-weight: 600; color: var(--warm-sand); line-height: 1; margin-bottom: 0.75rem; }
+  .step-card h3 { font-size: 1rem; font-weight: 500; color: var(--rich-brown); margin-bottom: 0.5rem; }
+  .step-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
+  .step-accent { width: 32px; height: 3px; border-radius: 2px; margin-bottom: 1rem; }
+
+  .warm-divider { background: var(--warm-sand); padding: 4rem 2rem; text-align: center; }
+  .warm-divider blockquote { font-family: 'Lora', serif; font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-style: italic; color: var(--rich-brown); max-width: 650px; margin: 0 auto 0.75rem; line-height: 1.5; }
+  .warm-divider cite { font-size: 0.85rem; color: var(--text-muted); font-style: normal; }
+
+  .programs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  @media (max-width: 600px) { .programs-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
+  .program-card { border-radius: 1.25rem; padding: 2rem; }
+  .program-card.youth { background: #EFF6F0; border: 1px solid #C5DFC8; }
+  .program-card.elder { background: var(--pale-blush); border: 1px solid #E8C5B0; }
+
+  /* Icon + pill on same line */
+  .program-card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+  .program-card-header svg { width: 28px; height: 28px; flex-shrink: 0; }
+  .program-tag { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; display: inline-block; padding: 0.25rem 0.75rem; border-radius: 2rem; }
+  .program-card.youth .program-tag { background: #D0ECCE; color: var(--deep-sage); }
+  .program-card.elder .program-tag { background: #F5D8C8; color: #8B4020; }
+
+  .program-card h3 { font-family: 'Lora', serif; font-size: 1.3rem; color: var(--rich-brown); margin-bottom: 0.75rem; }
+  .program-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.25rem; }
+  .program-features { list-style: none; }
+  .program-features li { font-size: 0.85rem; color: var(--text-main); padding: 0.35rem 0; display: flex; align-items: flex-start; gap: 0.5rem; }
+  .program-features li::before { content: '→'; flex-shrink: 0; margin-top: 1px; }
+  .program-card.youth .program-features li::before { color: var(--deep-sage); }
+  .program-card.elder .program-features li::before { color: var(--blush); }
+
+  .involve-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 2.5rem; }
+  .involve-card { background: white; border: 1px solid var(--warm-tan); border-radius: 1rem; padding: 1.5rem; text-align: center; cursor: pointer; transition: border-color 0.2s, transform 0.15s; text-decoration: none; display: block; }
+  .involve-card:hover { border-color: var(--deep-sage); transform: translateY(-2px); }
+  .involve-card .inv-icon { width: 32px; height: 32px; margin: 0 auto 0.75rem; display: flex; align-items: center; justify-content: center; }
+  .involve-card h3 { font-size: 0.95rem; font-weight: 500; color: var(--rich-brown); margin-bottom: 0.4rem; }
+  .involve-card p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+  footer { background: var(--rich-brown); color: rgba(255,255,255,0.7); padding: 3rem 2rem; text-align: center; }
+  footer .footer-logo { font-family: 'Lora', serif; color: white; font-size: 1.2rem; margin-bottom: 0.5rem; }
+  footer p { font-size: 0.85rem; line-height: 1.7; max-width: 440px; margin: 0 auto 1.5rem; }
+  footer .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+  footer a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  footer a:hover { color: white; }
+  .footer-note { margin-top: 2rem; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <!-- Neuron icon: cell body with branching dendrites -->
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3D6B42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"/>
+      <line x1="12" y1="9" x2="12" y2="3"/>
+      <line x1="12" y1="3" x2="9" y2="1"/>
+      <line x1="12" y1="3" x2="15" y2="1"/>
+      <line x1="14.6" y1="9.8" x2="19" y2="6"/>
+      <line x1="19" y1="6" x2="22" y2="7"/>
+      <line x1="19" y1="6" x2="20" y2="3"/>
+      <line x1="9.4" y1="9.8" x2="5" y2="6"/>
+      <line x1="5" y1="6" x2="2" y2="7"/>
+      <line x1="5" y1="6" x2="4" y2="3"/>
+      <line x1="12" y1="15" x2="12" y2="22"/>
+      <line x1="12" y1="22" x2="9" y2="24"/>
+      <line x1="12" y1="22" x2="15" y2="24"/>
+    </svg>
+    <span>Brain</span>&nbsp;Bee Initiative
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">About</a></li>
+    <li><a href="#">Programs</a></li>
+    <li><a href="#">Get Involved</a></li>
+    <li><a href="#" class="nav-cta">Support Us</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">Bridging generations through neuroscience</div>
+  <h1>Where young curiosity funds <em>elder vitality</em></h1>
+  <p class="hero-sub">We train and tutor students for the USA Brain Bee — then use those resources to build neuroscience competitions that promote cognitive health for older adults.</p>
+  <div class="hero-ctas">
+    <a href="#" class="btn-primary">Learn how it works</a>
+    <a href="#" class="btn-secondary">Support our mission</a>
+  </div>
+  <div class="founded-by">
+    <div class="founded-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3D6B42" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    <div>
+      <h4>Founded by competitors, for the community</h4>
+      <p>The Brain Bee Initiative was created by <strong>national USA Brain Bee participants</strong> who wanted to give back — turning their competition experience into tutoring, and tutoring into a broader mission for cognitive health across all ages.</p>
+    </div>
+  </div>
+</section>
+
+<div class="bridge-visual">
+  <div class="bridge-node">
+    <div class="node-icon">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#3D6B42" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+    </div>
+    <h3>Youth tutoring</h3>
+    <p>Students prep for Brain Bee competitions</p>
+  </div>
+  <div class="bridge-connector">
+    <div class="bridge-line">
+      <div class="bridge-label">funds & inspires</div>
+      <div class="bridge-arrow"></div>
+    </div>
+  </div>
+  <div class="bridge-node">
+    <div class="node-icon">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#C97B5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="10" cy="4" r="2"/>
+        <path d="M10 8c-2 0-4 1.5-4 4l1 3h6l1-3c0-2.5-2-4-4-4z"/>
+        <path d="M7 15l-1 6"/><path d="M13 15l1 6"/>
+        <path d="M15 13l3 8"/><path d="M15 13c1-1 2-1.5 2-1.5"/>
+      </svg>
+    </div>
+    <h3>Elder programs</h3>
+    <p>Cognitive health competitions for older adults</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-label">How it works</div>
+  <h2>A self-sustaining cycle of learning</h2>
+  <p class="section-intro">Every tutoring session does double duty — it helps a student excel and generates the funding to serve a completely different community.</p>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-accent" style="background: var(--deep-sage);"></div>
+      <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="#3D6B42" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      <h3>Neuroscience tutoring</h3>
+      <p>National Brain Bee participants offer expert tutoring for students preparing for USA Brain Bee — covering neuroanatomy, neurophysiology, and more.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-accent" style="background: var(--deep-amber);"></div>
+      <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <h3>Revenue reinvested</h3>
+      <p>Tutoring fees fund our operational costs and the development of elder cognitive health programming.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-accent" style="background: var(--blush);"></div>
+      <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="#C97B5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      <h3>Elder competitions</h3>
+      <p>We build Brain Bee–style events adapted for older adults — free to enter, with monetary prizes to reward participation and achievement.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <div class="step-accent" style="background: var(--soft-sage);"></div>
+      <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <h3>Community grows</h3>
+      <p>Students and elders connect around a shared love of the brain — creating an intergenerational learning ecosystem.</p>
+    </div>
+  </div>
+</section>
+
+<div class="warm-divider">
+  <blockquote>"The brain is wider than the sky — and it deserves to be celebrated at every age."</blockquote>
+  <cite>— The Brain Bee Initiative</cite>
+</div>
+
+<section class="section">
+  <div class="section-label">Our programs</div>
+  <h2>Two communities, one mission</h2>
+  <p class="section-intro">We serve students and seniors with equal dedication — because curiosity about the brain has no age limit.</p>
+  <div class="programs-grid">
+    <div class="program-card youth">
+      <div class="program-card-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#3D6B42" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        <span class="program-tag">Youth</span>
+      </div>
+      <h3>USA Brain Bee preparation</h3>
+      <p>Personalized tutoring from national Brain Bee competitors, with study resources for students at every level of the competition.</p>
+      <ul class="program-features">
+        <li>One-on-one and group tutoring sessions</li>
+        <li>Practice question banks and mock exams</li>
+        <li>Mentorship from experienced competitors</li>
+        <li>Affordable, sliding-scale pricing</li>
+      </ul>
+    </div>
+    <div class="program-card elder">
+      <div class="program-card-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C97B5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="10" cy="4" r="2"/>
+          <path d="M10 8c-2 0-4 1.5-4 4l1 3h6l1-3c0-2.5-2-4-4-4z"/>
+          <path d="M7 15l-1 6"/><path d="M13 15l1 6"/>
+          <path d="M15 13l3 8"/><path d="M15 13c1-1 2-1.5 2-1.5"/>
+        </svg>
+        <span class="program-tag">Elders</span>
+      </div>
+      <h3>Competition for cognitive health</h3>
+      <p>Fun, social neuroscience events designed to keep older adults mentally active and connected — completely free to participate, with monetary prizes for top performers.</p>
+      <ul class="program-features">
+        <li>Brain-themed quiz bowls and trivia nights</li>
+        <li>Educational workshops on brain health</li>
+        <li>Partnerships with senior centers</li>
+        <li>No cost to participants, ever</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="section-label">Get involved</div>
+  <h2>Join the initiative</h2>
+  <p class="section-intro">Whether you're a student, a volunteer, or someone who wants to support a meaningful cause — there's a place for you here.</p>
+  <div class="involve-grid">
+    <a href="#" class="involve-card">
+      <div class="inv-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3D6B42" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      </div>
+      <h3>Sign up for tutoring</h3>
+      <p>Students preparing for the Brain Bee can get expert help</p>
+    </a>
+    <a href="#" class="involve-card">
+      <div class="inv-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <h3>Volunteer with us</h3>
+      <p>Tutors, organizers, and mentors always welcome</p>
+    </a>
+    <a href="#" class="involve-card">
+      <div class="inv-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C97B5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <h3>Donate</h3>
+      <p>Help us expand elder programs and reach more communities</p>
+    </a>
+    <a href="#" class="involve-card">
+      <div class="inv-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+      </div>
+      <h3>Partner with us</h3>
+      <p>Senior centers, schools, and orgs — let's collaborate</p>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Brain Bee Initiative</div>
+  <p>Connecting the curiosity of youth with the wisdom of age — one neuron at a time.</p>
+  <div class="footer-links">
+    <a href="#">About</a>
+    <a href="#">Programs</a>
+    <a href="#">Volunteer</a>
+    <a href="#">Contact</a>
+    <a href="#">Donate</a>
+  </div>
+  <p class="footer-note">Brain Bee Initiative is a community organization. Name subject to change.</p>
+</footer>
+
+</body>
+</html>
