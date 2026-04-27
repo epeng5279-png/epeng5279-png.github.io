@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program — Brain Bee Initiative</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --warm-cream: #FBF7F0;
+    --warm-sand: #F0E8D8;
+    --warm-tan: #D9C9A8;
+    --deep-amber: #8B6914;
+    --rich-brown: #4A3210;
+    --soft-sage: #7A9E7E;
+    --deep-sage: #3D6B42;
+    --blush: #C97B5A;
+    --pale-blush: #F5E6DC;
+    --text-main: #2D2010;
+    --text-muted: #7A6645;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--warm-cream); color: var(--text-main); line-height: 1.7; overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; background: rgba(251,247,240,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--warm-tan); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+  .nav-logo { font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600; color: var(--rich-brown); display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; text-decoration: none; }
+  .nav-logo .logo-text span { color: var(--deep-sage); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 0.875rem; color: var(--text-muted); transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--rich-brown); font-weight: 500; }
+  .nav-cta { background: var(--deep-sage); color: white !important; padding: 0.5rem 1.25rem; border-radius: 2rem; font-weight: 500 !important; }
+
+  /* PAGE HERO */
+  .page-hero { padding: 5rem 2rem 3rem; max-width: 900px; margin: 0 auto; }
+  .page-hero .section-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blush); font-weight: 500; margin-bottom: 0.5rem; }
+  .page-hero h1 { font-family: 'Lora', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; color: var(--rich-brown); margin-bottom: 1rem; }
+  .page-hero p { font-size: 1.05rem; color: var(--text-muted); max-width: 600px; font-weight: 300; }
+
+  /* OVERVIEW STATS */
+  .stats-row { background: white; border: 1px solid var(--warm-tan); border-radius: 1.25rem; padding: 1.75rem 2rem; max-width: 900px; margin: 0 auto 0; display: flex; gap: 0; flex-wrap: wrap; }
+  .stat { flex: 1; min-width: 140px; padding: 0.5rem 1.5rem; border-right: 1px solid var(--warm-tan); }
+  .stat:first-child { padding-left: 0; }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Lora', serif; font-size: 2rem; font-weight: 600; color: var(--rich-brown); line-height: 1; margin-bottom: 0.2rem; }
+  .stat-label { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
+
+  /* SECTION */
+  .section { padding: 4rem 2rem; max-width: 960px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blush); font-weight: 500; margin-bottom: 0.5rem; }
+  .section h2 { font-family: 'Lora', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--rich-brown); margin-bottom: 0.75rem; }
+  .section-intro { font-size: 0.95rem; color: var(--text-muted); max-width: 580px; margin-bottom: 2.5rem; }
+
+  /* CURRICULUM TIMELINE */
+  .curriculum { display: flex; flex-direction: column; gap: 0; }
+  .curriculum-group { margin-bottom: 2rem; }
+  .group-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+  .group-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .group-title { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
+  .group-count { font-size: 0.75rem; color: var(--text-muted); margin-left: auto; }
+
+  .sessions-grid { display: flex; flex-direction: column; gap: 0.5rem; }
+  .session-row { display: flex; align-items: center; gap: 1rem; background: white; border: 1px solid var(--warm-tan); border-radius: 0.75rem; padding: 0.9rem 1.25rem; transition: border-color 0.2s; }
+  .session-row:hover { border-color: var(--warm-tan); background: var(--warm-cream); }
+  .session-num { font-family: 'Lora', serif; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); min-width: 32px; }
+  .session-day { font-size: 0.72rem; color: var(--text-muted); min-width: 52px; background: var(--warm-sand); padding: 0.15rem 0.5rem; border-radius: 2rem; text-align: center; }
+  .session-title { font-size: 0.9rem; color: var(--text-main); flex: 1; }
+  .session-tag { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 2rem; white-space: nowrap; }
+  .tag-brainfacts { background: #E8F2E9; color: var(--deep-sage); }
+  .tag-anatomy { background: #E8EEFA; color: #3A5BA0; }
+  .tag-clinical { background: var(--pale-blush); color: #8B4020; }
+
+  /* CHAPTER COLLAPSIBLE */
+  .chapter-list { margin-top: 0.35rem; margin-left: calc(32px + 52px + 2rem); display: none; }
+  .chapter-list.open { display: block; }
+  .chapter-list ul { list-style: none; border-left: 2px solid var(--warm-tan); padding: 0.4rem 0 0.4rem 1rem; margin-top: 0.35rem; }
+  .chapter-list ul li { font-size: 0.8rem; color: var(--text-muted); padding: 0.15rem 0; }
+  .expand-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 0.75rem; display: flex; align-items: center; gap: 0.25rem; padding: 0; transition: color 0.2s; }
+  .expand-btn:hover { color: var(--rich-brown); }
+  .expand-btn svg { transition: transform 0.2s; }
+  .expand-btn.open svg { transform: rotate(180deg); }
+
+  /* DIVIDER */
+  .warm-divider { background: var(--warm-sand); padding: 3.5rem 2rem; }
+  .warm-divider-inner { max-width: 960px; margin: 0 auto; display: flex; gap: 3rem; align-items: flex-start; flex-wrap: wrap; }
+  .divider-text h3 { font-family: 'Lora', serif; font-size: 1.4rem; color: var(--rich-brown); margin-bottom: 0.5rem; }
+  .divider-text p { font-size: 0.9rem; color: var(--text-muted); max-width: 480px; }
+
+  /* 1:1 TUTORING */
+  .tutoring-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 620px) { .tutoring-grid { grid-template-columns: 1fr; } .nav-links { display: none; } .stat { border-right: none; border-bottom: 1px solid var(--warm-tan); padding: 0.75rem 0; } .stats-row { padding: 1.25rem; } }
+  .tutor-option { border-radius: 1.25rem; padding: 1.75rem; border: 1px solid var(--warm-tan); background: white; }
+  .tutor-option.recommended { border-color: #C5DFC8; background: #EFF6F0; }
+  .tutor-option-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+  .tutor-option-header svg { width: 26px; height: 26px; flex-shrink: 0; }
+  .tutor-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.65rem; border-radius: 2rem; }
+  .label-regional { background: #D0ECCE; color: var(--deep-sage); }
+  .label-open { background: var(--warm-sand); color: var(--deep-amber); }
+  .tutor-option h3 { font-family: 'Lora', serif; font-size: 1.1rem; color: var(--rich-brown); margin-bottom: 0.5rem; }
+  .tutor-option p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.25rem; }
+  .tutor-features { list-style: none; }
+  .tutor-features li { font-size: 0.83rem; color: var(--text-main); padding: 0.3rem 0; display: flex; align-items: flex-start; gap: 0.5rem; }
+  .tutor-features li::before { content: '→'; flex-shrink: 0; }
+  .tutor-option.recommended .tutor-features li::before { color: var(--deep-sage); }
+  .tutor-option:not(.recommended) .tutor-features li::before { color: var(--deep-amber); }
+
+  /* CTA */
+  .cta-band { background: var(--rich-brown); padding: 4rem 2rem; text-align: center; }
+  .cta-band h2 { font-family: 'Lora', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); color: white; margin-bottom: 0.75rem; }
+  .cta-band p { font-size: 0.95rem; color: rgba(255,255,255,0.65); max-width: 480px; margin: 0 auto 2rem; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-light { background: white; color: var(--rich-brown); padding: 0.85rem 2rem; border-radius: 3rem; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: background 0.2s; display: inline-block; }
+  .btn-light:hover { background: var(--warm-sand); }
+  .btn-outline-light { background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.35); padding: 0.85rem 2rem; border-radius: 3rem; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: border-color 0.2s; display: inline-block; }
+  .btn-outline-light:hover { border-color: white; }
+
+  footer { background: var(--rich-brown); border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); padding: 2.5rem 2rem; text-align: center; }
+  footer .footer-logo { font-family: 'Lora', serif; color: white; font-size: 1.1rem; margin-bottom: 0.4rem; }
+  footer .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+  footer a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  footer a:hover { color: white; }
+  .footer-note { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3D6B42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"/>
+      <line x1="12" y1="9" x2="12" y2="3"/><line x1="12" y1="3" x2="9" y2="1"/><line x1="12" y1="3" x2="15" y2="1"/>
+      <line x1="14.6" y1="9.8" x2="19" y2="6"/><line x1="19" y1="6" x2="22" y2="7"/><line x1="19" y1="6" x2="20" y2="3"/>
+      <line x1="9.4" y1="9.8" x2="5" y2="6"/><line x1="5" y1="6" x2="2" y2="7"/><line x1="5" y1="6" x2="4" y2="3"/>
+      <line x1="12" y1="15" x2="12" y2="21"/><line x1="12" y1="21" x2="9.5" y2="23"/><line x1="12" y1="21" x2="14.5" y2="23"/>
+    </svg>
+    <div class="logo-text"><span>Brain</span> Bee Initiative</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">About</a></li>
+    <li><a href="#" class="active">Programs</a></li>
+    <li><a href="#">Get Involved</a></li>
+    <li><a href="#" class="nav-cta">Support Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="section-label">Youth program</div>
+  <h1>USA Brain Bee<br>Preparation Course</h1>
+  <p>A structured 2-month curriculum built around the official Brain Bee syllabus — led by national competitors who know exactly what it takes.</p>
+</div>
+
+<!-- STATS -->
+<div style="padding: 0 2rem 3rem; max-width: 960px; margin: 0 auto;">
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-num">2</div>
+      <div class="stat-label">months long</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">22</div>
+      <div class="stat-label">total sessions</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Every<br><span style="font-size:1.4rem">other day</span></div>
+      <div class="stat-label">session frequency</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">subject tracks</div>
+    </div>
+  </div>
+</div>
+
+<!-- CURRICULUM -->
+<section class="section" style="padding-top: 0;">
+  <div class="section-label">Curriculum</div>
+  <h2>What you'll cover</h2>
+  <p class="section-intro">Sessions follow a logical progression — building foundational neuroscience knowledge before moving into applied anatomy and clinical reasoning.</p>
+
+  <div class="curriculum">
+
+    <!-- BRAINFACTS -->
+    <div class="curriculum-group">
+      <div class="group-header">
+        <div class="group-dot" style="background: var(--deep-sage);"></div>
+        <div class="group-title" style="color: var(--deep-sage);">BrainFacts Textbook</div>
+        <div class="group-count">Sessions 1–17 · Days 1–33</div>
+      </div>
+      <div class="sessions-grid" id="brainfacts-sessions">
+        <!-- Sessions will be injected by JS -->
+      </div>
+    </div>
+
+    <!-- NEUROANATOMY -->
+    <div class="curriculum-group">
+      <div class="group-header">
+        <div class="group-dot" style="background: #3A5BA0;"></div>
+        <div class="group-title" style="color: #3A5BA0;">Neuroanatomy & Histology</div>
+        <div class="group-count">Sessions 18–21 · Days 35–41</div>
+      </div>
+      <div class="sessions-grid">
+        <div class="session-row">
+          <div class="session-num">18</div>
+          <div class="session-day">Day 35</div>
+          <div class="session-title">2D Cross-Sectional Neuroanatomy</div>
+          <span class="session-tag tag-anatomy">Anatomy</span>
+        </div>
+        <div class="session-row">
+          <div class="session-num">19</div>
+          <div class="session-day">Day 37</div>
+          <div class="session-title">3D Brain Models & Spatial Orientation</div>
+          <span class="session-tag tag-anatomy">Anatomy</span>
+        </div>
+        <div class="session-row">
+          <div class="session-num">20</div>
+          <div class="session-day">Day 39</div>
+          <div class="session-title">Blood Vessels & Spinal Cord Anatomy</div>
+          <span class="session-tag tag-anatomy">Anatomy</span>
+        </div>
+        <div class="session-row">
+          <div class="session-num">21</div>
+          <div class="session-day">Day 41</div>
+          <div class="session-title">Histology — Cell Types & Neural Tissue</div>
+          <span class="session-tag tag-anatomy">Anatomy</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLINICAL -->
+    <div class="curriculum-group">
+      <div class="group-header">
+        <div class="group-dot" style="background: var(--blush);"></div>
+        <div class="group-title" style="color: var(--blush);">Clinical Application</div>
+        <div class="group-count">Session 22 · Day 43</div>
+      </div>
+      <div class="sessions-grid">
+        <div class="session-row">
+          <div class="session-num">22</div>
+          <div class="session-day">Day 43</div>
+          <div class="session-title">Clinical Diagnosis & Treatment — Putting It All Together</div>
+          <span class="session-tag tag-clinical">Clinical</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="warm-divider">
+  <div class="warm-divider-inner">
+    <div class="divider-text">
+      <h3>Built around BrainFacts</h3>
+      <p>The majority of USA Brain Bee questions draw from <em>BrainFacts: A Primer on the Brain and Nervous System</em>. Our 17-session BrainFacts track works through the textbook chapter by chapter — so nothing gets left behind.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 1:1 TUTORING -->
+<section class="section">
+  <div class="section-label">One-on-one tutoring</div>
+  <h2>Personalized support</h2>
+  <p class="section-intro">In addition to group sessions, students can sign up for individual tutoring with a national Brain Bee competitor. Choose how you'd like to be matched.</p>
+
+  <div class="tutoring-grid">
+    <div class="tutor-option recommended">
+      <div class="tutor-option-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#3D6B42" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <span class="tutor-label label-regional">Regional match</span>
+      </div>
+      <h3>Match with a regional competitor</h3>
+      <p>Get paired with a Brain Bee competitor from your region — someone who knows your local competition, regional question patterns, and the specific circuit you're preparing for.</p>
+      <ul class="tutor-features">
+        <li>Tutor familiar with your regional Brain Bee</li>
+        <li>Targeted advice for local competition format</li>
+        <li>Subject to availability in your region</li>
+        <li>Closest thing to insider preparation</li>
+      </ul>
+    </div>
+    <div class="tutor-option">
+      <div class="tutor-option-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span class="tutor-label label-open">Open match</span>
+      </div>
+      <h3>Match with any competitor</h3>
+      <p>Get paired with a national Brain Bee participant regardless of region — great if regional tutors aren't available or if you want a broader range of perspectives on the material.</p>
+      <ul class="tutor-features">
+        <li>Wider pool of available tutors</li>
+        <li>Faster matching, more scheduling flexibility</li>
+        <li>Strong general Brain Bee expertise</li>
+        <li>Available to all students, always</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band">
+  <h2>Ready to start preparing?</h2>
+  <p>Sign up for the group program, request a one-on-one tutor, or reach out with any questions.</p>
+  <div class="cta-btns">
+    <a href="#" class="btn-light">Enroll in the program</a>
+    <a href="#" class="btn-outline-light">Request a tutor</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Brain Bee Initiative</div>
+  <div class="footer-links">
+    <a href="#">About</a>
+    <a href="#">Programs</a>
+    <a href="#">Volunteer</a>
+    <a href="#">Contact</a>
+    <a href="#">Donate</a>
+  </div>
+  <p class="footer-note">Brain Bee Initiative is a community organization. Name subject to change.</p>
+</footer>
+
+<script>
+const brainfactsSessions = [
+  { num: 1,  day: 1,  title: "Introduction to Neuroscience & Brain Overview", chapters: ["Ch. 1 — The Brain: An Overview"] },
+  { num: 2,  day: 3,  title: "Neurons, Glia & Neural Communication", chapters: ["Ch. 2 — Neurons and Glia", "Ch. 3 — The Synapse"] },
+  { num: 3,  day: 5,  title: "Neurotransmitters & Signaling", chapters: ["Ch. 4 — Neurotransmitters"] },
+  { num: 4,  day: 7,  title: "Sensory Systems I — Touch & Pain", chapters: ["Ch. 5 — Touch, Pain & Body Senses"] },
+  { num: 5,  day: 9,  title: "Sensory Systems II — Vision", chapters: ["Ch. 6 — Vision"] },
+  { num: 6,  day: 11, title: "Sensory Systems III — Hearing & Balance", chapters: ["Ch. 7 — Hearing, Balance & Taste", "Ch. 8 — Smell"] },
+  { num: 7,  day: 13, title: "Movement & the Motor System", chapters: ["Ch. 9 — Movement"] },
+  { num: 8,  day: 15, title: "The Developing Brain", chapters: ["Ch. 10 — The Developing Brain"] },
+  { num: 9,  day: 17, title: "Plasticity, Learning & Memory I", chapters: ["Ch. 11 — Learning & Memory"] },
+  { num: 10, day: 19, title: "Plasticity, Learning & Memory II", chapters: ["Ch. 11 — Learning & Memory (continued)", "Ch. 12 — Thinking, Planning & Language"] },
+  { num: 11, day: 21, title: "Sleep & Biological Rhythms", chapters: ["Ch. 13 — Sleep"] },
+  { num: 12, day: 23, title: "Stress, Emotions & the Limbic System", chapters: ["Ch. 14 — Stress", "Ch. 15 — Emotions"] },
+  { num: 13, day: 25, title: "Motivation, Reward & Addiction", chapters: ["Ch. 16 — Motivation & Addiction"] },
+  { num: 14, day: 27, title: "Sex, Hormones & the Brain", chapters: ["Ch. 17 — Sex & the Brain"] },
+  { num: 15, day: 29, title: "Neurological Disorders", chapters: ["Ch. 18 — Neurological Disorders"] },
+  { num: 16, day: 31, title: "Psychiatric Disorders", chapters: ["Ch. 19 — Psychiatric Disorders"] },
+  { num: 17, day: 33, title: "Review & BrainFacts Exam Practice", chapters: ["Full textbook review", "Practice question sets"] },
+];
+
+const container = document.getElementById('brainfacts-sessions');
+
+brainfactsSessions.forEach(s => {
+  const wrapper = document.createElement('div');
+
+  const row = document.createElement('div');
+  row.className = 'session-row';
+  row.style.cursor = 'pointer';
+  row.innerHTML = `
+    <div class="session-num">${s.num}</div>
+    <div class="session-day">Day ${s.day}</div>
+    <div class="session-title">${s.title}</div>
+    <button class="expand-btn" aria-label="Show chapters">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <span class="session-tag tag-brainfacts">BrainFacts</span>
+  `;
+
+  const detail = document.createElement('div');
+  detail.className = 'chapter-list';
+  detail.innerHTML = `<ul>${s.chapters.map(c => `<li>${c}</li>`).join('')}</ul>`;
+
+  const btn = row.querySelector('.expand-btn');
+  row.addEventListener('click', () => {
+    const isOpen = detail.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+  });
+
+  wrapper.appendChild(row);
+  wrapper.appendChild(detail);
+  container.appendChild(wrapper);
+});
+</script>
+
+</body>
+</html>
