@@ -120,6 +120,191 @@
   footer a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
   footer a:hover { color: white; }
   .footer-note { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+   /* ──  Guest Speaker Section shell ─────────────────────────────────────── */
+  .speakers-section {
+    padding: 96px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  /* ── Eye-brow label (matches site's "Youth program" pill) ── */
+  .speakers-section .section-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 20px;
+  }
+
+  /* ── Headings ───────────────────────────────────────────── */
+  .speakers-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #111827;
+    margin: 0 0 16px;
+  }
+
+  .speakers-section .section-intro {
+    font-size: 1.0625rem;
+    color: #4b5563;
+    line-height: 1.65;
+    max-width: 640px;
+    margin: 0 0 56px;
+  }
+
+  /* ── Two-column card grid ───────────────────────────────── */
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 56px;
+  }
+
+  @media (max-width: 640px) {
+    .speakers-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Individual cards ───────────────────────────────────── */
+  .speakers-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 32px 28px;
+    background: #fff;
+  }
+
+  .speakers-card .card-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6b7280;
+    background: #f3f4f6;
+    border-radius: 4px;
+    padding: 3px 8px;
+    margin-bottom: 16px;
+  }
+
+  .speakers-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 10px;
+  }
+
+  .speakers-card p {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0 0 20px;
+  }
+
+  .speakers-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .speakers-card ul li {
+    font-size: 0.875rem;
+    color: #374151;
+    padding: 5px 0;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .speakers-card ul li::before {
+    content: "·";
+    position: absolute;
+    left: 0;
+    color: #9ca3af;
+    font-weight: 700;
+  }
+
+  /* ── Coming-soon badge on the student card ──────────────── */
+  .badge-coming-soon {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #92400e;
+    background: #fef3c7;
+    border-radius: 99px;
+    padding: 4px 10px;
+    margin-top: 16px;
+  }
+
+  .badge-coming-soon::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #d97706;
+  }
+
+  /* ── CTA block ──────────────────────────────────────────── */
+  .speakers-cta {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .speakers-cta p {
+    font-size: 1.0625rem;
+    color: #111827;
+    font-weight: 600;
+    margin: 0 0 20px;
+  }
+
+  .speakers-cta .cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: #111827;
+    color: #fff;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+
+  .btn-primary:hover {
+    background: #1f2937;
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    background: #fff;
+    color: #111827;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: #9ca3af;
+  }
 </style>
 </head>
 <body>
