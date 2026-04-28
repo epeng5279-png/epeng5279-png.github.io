@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Brain Bee Initiative</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --warm-cream: #FBF7F0;
+    --warm-sand: #F0E8D8;
+    --warm-tan: #D9C9A8;
+    --deep-amber: #8B6914;
+    --rich-brown: #4A3210;
+    --soft-sage: #7A9E7E;
+    --deep-sage: #3D6B42;
+    --blush: #C97B5A;
+    --pale-blush: #F5E6DC;
+    --text-main: #2D2010;
+    --text-muted: #7A6645;
+  }
+
+  body { font-family: 'DM Sans', sans-serif; background: var(--warm-cream); color: var(--text-main); line-height: 1.7; overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; background: rgba(251,247,240,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--warm-tan); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+  .nav-logo { font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600; color: var(--rich-brown); display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; text-decoration: none; }
+  .nav-logo .logo-text span { color: var(--deep-sage); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 0.875rem; color: var(--text-muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--rich-brown); }
+  .nav-links a.active { color: var(--rich-brown); font-weight: 500; }
+  .nav-cta { background: var(--deep-sage); color: white !important; padding: 0.5rem 1.25rem; border-radius: 2rem; font-weight: 500 !important; }
+
+  /* PAGE HERO */
+  .page-hero { padding: 5rem 2rem 3.5rem; max-width: 800px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blush); font-weight: 500; margin-bottom: 0.5rem; }
+  .page-hero h1 { font-family: 'Lora', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; color: var(--rich-brown); margin-bottom: 1.25rem; }
+  .page-hero .lead { font-size: 1.1rem; color: var(--text-muted); font-weight: 300; line-height: 1.75; max-width: 660px; }
+
+  /* MISSION */
+  .mission-band { background: var(--rich-brown); padding: 5rem 2rem; }
+  .mission-inner { max-width: 800px; margin: 0 auto; }
+  .mission-label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); font-weight: 500; margin-bottom: 1.25rem; }
+  .mission-statement { font-family: 'Lora', serif; font-size: clamp(1.3rem, 2.8vw, 1.9rem); line-height: 1.55; color: white; margin-bottom: 2rem; }
+  .mission-statement em { font-style: italic; color: var(--soft-sage); }
+  .mission-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  @media (max-width: 640px) { .mission-pillars { grid-template-columns: 1fr; } .nav-links { display: none; } }
+  .pillar { border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1.25rem; }
+  .pillar h4 { font-size: 0.85rem; font-weight: 500; color: white; margin-bottom: 0.4rem; }
+  .pillar p { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  /* STORY */
+  .section { padding: 5rem 2rem; max-width: 960px; margin: 0 auto; }
+  .section h2 { font-family: 'Lora', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--rich-brown); margin-bottom: 1rem; }
+  .section-intro { font-size: 0.975rem; color: var(--text-muted); max-width: 640px; margin-bottom: 2rem; line-height: 1.75; }
+  .section-intro + .section-intro { margin-top: -1rem; }
+
+  /* VALUES ROW */
+  .values-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
+  .value-chip { display: flex; align-items: center; gap: 0.6rem; background: white; border: 1px solid var(--warm-tan); border-radius: 0.75rem; padding: 0.85rem 1.1rem; flex: 1; min-width: 160px; }
+  .value-chip svg { width: 20px; height: 20px; flex-shrink: 0; }
+  .value-chip span { font-size: 0.875rem; font-weight: 500; color: var(--rich-brown); }
+
+  /* DIVIDER */
+  .warm-divider { background: var(--warm-sand); padding: 4rem 2rem; text-align: center; }
+  .warm-divider blockquote { font-family: 'Lora', serif; font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-style: italic; color: var(--rich-brown); max-width: 620px; margin: 0 auto 0.75rem; line-height: 1.55; }
+  .warm-divider cite { font-size: 0.85rem; color: var(--text-muted); font-style: normal; }
+
+  /* TEAM */
+  .team-section { padding: 5rem 2rem; max-width: 1040px; margin: 0 auto; }
+  .team-section .section-label { margin-bottom: 0.5rem; }
+  .team-section h2 { font-family: 'Lora', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--rich-brown); margin-bottom: 1rem; }
+  .team-section .section-intro { font-size: 0.975rem; color: var(--text-muted); max-width: 640px; margin-bottom: 2.5rem; line-height: 1.75; }
+
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.25rem; }
+
+  .team-card { background: white; border: 1px solid var(--warm-tan); border-radius: 1.1rem; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.2s, transform 0.15s; }
+  .team-card:hover { border-color: var(--soft-sage); transform: translateY(-2px); }
+
+  /* Photo slot */
+  .team-photo { width: 100%; aspect-ratio: 1 / 1; background: var(--warm-sand); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; border-bottom: 1px solid var(--warm-tan); overflow: hidden; position: relative; }
+  .team-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .team-photo-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem; width: 100%; height: 100%; }
+  .team-photo-placeholder svg { opacity: 0.3; }
+  .team-photo-placeholder span { font-size: 0.7rem; color: var(--text-muted); opacity: 0.6; letter-spacing: 0.05em; }
+
+  .team-card-body { padding: 1.1rem 1.25rem 1.35rem; display: flex; flex-direction: column; gap: 0.4rem; flex: 1; }
+  .team-name { font-family: 'Lora', serif; font-size: 1rem; font-weight: 600; color: var(--rich-brown); }
+  .team-state { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--deep-sage); background: #E8F2E9; padding: 0.2rem 0.6rem; border-radius: 2rem; width: fit-content; }
+  .team-desc { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; margin-top: 0.3rem; flex: 1; }
+
+  /* CTA */
+  .cta-band { background: var(--deep-sage); padding: 4rem 2rem; text-align: center; }
+  .cta-band h2 { font-family: 'Lora', serif; font-size: clamp(1.5rem, 3vw, 2rem); color: white; margin-bottom: 0.75rem; }
+  .cta-band p { font-size: 0.95rem; color: rgba(255,255,255,0.7); max-width: 440px; margin: 0 auto 2rem; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-light { background: white; color: var(--deep-sage); padding: 0.85rem 2rem; border-radius: 3rem; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: background 0.2s; display: inline-block; }
+  .btn-light:hover { background: var(--warm-sand); }
+  .btn-outline-light { background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.4); padding: 0.85rem 2rem; border-radius: 3rem; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: border-color 0.2s; display: inline-block; }
+  .btn-outline-light:hover { border-color: white; }
+
+  footer { background: var(--rich-brown); border-top: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); padding: 2.5rem 2rem; text-align: center; }
+  footer .footer-logo { font-family: 'Lora', serif; color: white; font-size: 1.1rem; margin-bottom: 0.75rem; }
+  footer .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+  footer a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  footer a:hover { color: white; }
+  .footer-note { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3D6B42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"/>
+      <line x1="12" y1="9" x2="12" y2="3"/><line x1="12" y1="3" x2="9" y2="1"/><line x1="12" y1="3" x2="15" y2="1"/>
+      <line x1="14.6" y1="9.8" x2="19" y2="6"/><line x1="19" y1="6" x2="22" y2="7"/><line x1="19" y1="6" x2="20" y2="3"/>
+      <line x1="9.4" y1="9.8" x2="5" y2="6"/><line x1="5" y1="6" x2="2" y2="7"/><line x1="5" y1="6" x2="4" y2="3"/>
+      <line x1="12" y1="15" x2="12" y2="21"/><line x1="12" y1="21" x2="9.5" y2="23"/><line x1="12" y1="21" x2="14.5" y2="23"/>
+    </svg>
+    <div class="logo-text"><span>Brain</span> Bee Initiative</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" class="active">About</a></li>
+    <li><a href="#">Programs</a></li>
+    <li><a href="#">Get Involved</a></li>
+    <li><a href="#" class="nav-cta">Support Us</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="section-label">About us</div>
+  <h1>Neuroscience as a bridge between generations</h1>
+  <p class="lead">We started as competitors. We became a community. Now we're building something that reaches far beyond the competition stage — using the brain as common ground for people of every age.</p>
+</div>
+
+<div class="mission-band">
+  <div class="mission-inner">
+    <div class="mission-label">Our mission</div>
+    <p class="mission-statement">To harness the energy of young neuroscience competitors — and channel it into <em>lasting impact</em>: preparing the next generation of Brain Bee participants while pioneering cognitive health programs that bring the joy of learning to older adults.</p>
+    <div class="mission-pillars">
+      <div class="pillar">
+        <h4>Educate</h4>
+        <p>We give students the tools, knowledge, and mentorship to compete confidently at every level of the USA Brain Bee.</p>
+      </div>
+      <div class="pillar">
+        <h4>Reinvest</h4>
+        <p>Revenue from tutoring flows directly into developing free neuroscience programming for the elderly community.</p>
+      </div>
+      <div class="pillar">
+        <h4>Connect</h4>
+        <p>We believe the brain unites us — and that curiosity about it shouldn't fade with age. We're building a community that reflects that.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-label">Our story</div>
+  <h2>Born out of competition, driven by purpose</h2>
+  <p class="section-intro">The Brain Bee Initiative grew out of a simple realization: the students who compete in the USA Brain Bee come away with something rare — a genuine passion for neuroscience, a deep understanding of the brain, and the hunger to share it. We were those students.</p>
+  <p class="section-intro">After competing at the national level, we found ourselves asking the same question: <em>what do we do with all of this?</em> The answer was to build something. A tutoring program rooted in real competitive experience. And beyond that, a vision for using the proceeds to develop neuroscience competitions for older adults — because cognitive health matters at every stage of life, and because competition can be joyful at any age.</p>
+  <div class="values-row">
+    <div class="value-chip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#3D6B42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <span>Competitor-led</span>
+    </div>
+    <div class="value-chip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>Community-first</span>
+    </div>
+    <div class="value-chip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#C97B5A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span>Science-grounded</span>
+    </div>
+    <div class="value-chip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      <span>Mission-driven</span>
+    </div>
+  </div>
+</section>
+
+<div class="warm-divider">
+  <blockquote>"We didn't just learn about the brain — we fell in love with it. This initiative is how we pass that on."</blockquote>
+  <cite>— The Brain Bee Initiative team</cite>
+</div>
+
+<div class="team-section">
+  <div class="section-label">Our team</div>
+  <h2>Meet the people behind the initiative</h2>
+  <p class="section-intro">We're a group of thirteen former USA Brain Bee competitors from across the country — united by a shared obsession with neuroscience and a belief that knowledge is most meaningful when it's shared. Each of us brings our competitive experience to the tutoring room, and our passion for outreach to everything we build.</p>
+  <div class="team-grid" id="team-grid"></div>
+</div>
+
+<div class="cta-band">
+  <h2>Want to be part of it?</h2>
+  <p>Whether you're a student, a supporter, or a future collaborator — we'd love to hear from you.</p>
+  <div class="cta-btns">
+    <a href="#" class="btn-light">Get involved</a>
+    <a href="#" class="btn-outline-light">Contact us</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Brain Bee Initiative</div>
+  <div class="footer-links">
+    <a href="#">About</a>
+    <a href="#">Programs</a>
+    <a href="#">Volunteer</a>
+    <a href="#">Contact</a>
+    <a href="#">Donate</a>
+  </div>
+  <p class="footer-note">Brain Bee Initiative is a community organization. Name subject to change.</p>
+</footer>
+
+<script>
+const members = [
+  { name: "First Last", state: "State", desc: "Brief description of this person's background, role on the team, and Brain Bee experience." },
+  { name: "First Last", state: "State", desc: "Brief description of this person's background, role on the team, and Brain Bee experience." },
+  { name: "First Last", state: "State", desc: "Brief description of this person's background, role on the team, and Brain Bee experience." },
+  { name: "First Last", state: "State", desc: "Brief description of this person's background, role on the team, and Brain Bee experience." },
+  { name: "First Last", state: "State", desc: "Brief description of this person's background, role on the team, and Brain Bee experience." },
+  { name: "First Last", state: "State", desc: "Brief description of this person's background, role on the team, and Brain Bee experience." },
+  { name: "First Last", state: "State", desc: "Brief description of this person's background, role on the team, and Brain Bee experience." },
+  { name: "First Last", state: "State", desc: "Brief description of this person's background, role on the team, and Brain Bee experience." },
+  { name: "First Last", state: "State", desc: "Brief description of this person's background, role on the team, and Brain Bee experience." },
+  { name: "First Last", state: "State", desc: "Brief description of this person's background, role on the team, and Brain Bee experience." },
+  { name: "First Last", state: "State", desc: "Brief description of this person's background, role on the team, and Brain Bee experience." },
+  { name: "First Last", state: "State", desc: "Brief description of this person's background, role on the team, and Brain Bee experience." },
+  { name: "First Last", state: "State", desc: "Brief description of this person's background, role on the team, and Brain Bee experience." },
+];
+
+const grid = document.getElementById('team-grid');
+
+members.forEach(m => {
+  const card = document.createElement('div');
+  card.className = 'team-card';
+  card.innerHTML = `
+    <div class="team-photo">
+      <div class="team-photo-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7A6645" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <circle cx="12" cy="10" r="3"/>
+          <path d="M6 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+        </svg>
+        <span>Photo</span>
+      </div>
+    </div>
+    <div class="team-card-body">
+      <div class="team-name">${m.name}</div>
+      <div class="team-state">
+        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+        ${m.state}
+      </div>
+      <div class="team-desc">${m.desc}</div>
+    </div>
+  `;
+  grid.appendChild(card);
+});
+</script>
+
+</body>
+</html>
