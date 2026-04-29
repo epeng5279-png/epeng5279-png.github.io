@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Involved — Brain Bee Initiative</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --warm-cream: #FBF7F0; --warm-sand: #F0E8D8; --warm-tan: #D9C9A8;
+    --deep-amber: #8B6914; --rich-brown: #4A3210; --soft-sage: #7A9E7E;
+    --deep-sage: #3D6B42; --blush: #C97B5A; --pale-blush: #F5E6DC;
+    --text-main: #2D2010; --text-muted: #7A6645;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--warm-cream); color: var(--text-main); line-height: 1.7; overflow-x: hidden; }
+
+  nav { position: sticky; top: 0; background: rgba(251,247,240,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--warm-tan); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+  .nav-logo { font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600; color: var(--rich-brown); display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; text-decoration: none; }
+  .nav-logo .logo-text span { color: var(--deep-sage); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 0.875rem; color: var(--text-muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--rich-brown); }
+  .nav-links a.active { color: var(--rich-brown); font-weight: 500; }
+  .nav-cta { background: var(--deep-sage); color: white !important; padding: 0.5rem 1.25rem; border-radius: 2rem; font-weight: 500 !important; }
+
+  .page-hero { padding: 5rem 2rem 3.5rem; max-width: 800px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blush); font-weight: 500; margin-bottom: 0.5rem; }
+  .page-hero h1 { font-family: 'Lora', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; color: var(--rich-brown); margin-bottom: 1.25rem; }
+  .page-hero .lead { font-size: 1.1rem; color: var(--text-muted); font-weight: 300; line-height: 1.75; max-width: 620px; }
+
+  .jump-links { padding: 0 2rem 3.5rem; max-width: 800px; margin: 0 auto; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .jump-link { display: inline-flex; align-items: center; gap: 0.5rem; border: 1.5px solid var(--warm-tan); border-radius: 2rem; padding: 0.5rem 1.1rem; text-decoration: none; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: border-color 0.2s, color 0.2s, background 0.2s; }
+  .jump-link:hover { border-color: var(--deep-sage); color: var(--deep-sage); background: #EFF6F0; }
+  .jump-link svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+  .involve-section { padding: 5rem 2rem; max-width: 960px; margin: 0 auto; scroll-margin-top: 80px; }
+  .involve-section + .involve-section { border-top: 1px solid var(--warm-tan); }
+  .involve-header { display: flex; align-items: flex-start; gap: 1.25rem; margin-bottom: 1rem; }
+  .involve-icon-wrap { width: 52px; height: 52px; border-radius: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .involve-header-text .section-label { margin-bottom: 0.25rem; }
+  .involve-header-text h2 { font-family: 'Lora', serif; font-size: clamp(1.6rem, 3vw, 2.1rem); color: var(--rich-brown); }
+  .involve-intro { font-size: 0.975rem; color: var(--text-muted); max-width: 620px; line-height: 1.75; margin-bottom: 2.5rem; }
+
+  /* PERKS */
+  .perks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+  .perk-card { background: white; border: 1px solid var(--warm-tan); border-radius: 1rem; padding: 1.25rem; }
+  .perk-card svg { width: 22px; height: 22px; margin-bottom: 0.6rem; }
+  .perk-card h4 { font-size: 0.9rem; font-weight: 500; color: var(--rich-brown); margin-bottom: 0.3rem; }
+  .perk-card p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+  /* APPLY CARD */
+  .apply-card { background: white; border: 1px solid var(--warm-tan); border-radius: 1.25rem; padding: 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .apply-card-text h3 { font-family: 'Lora', serif; font-size: 1.2rem; color: var(--rich-brown); margin-bottom: 0.35rem; }
+  .apply-card-text p { font-size: 0.875rem; color: var(--text-muted); max-width: 440px; line-height: 1.65; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--deep-sage); color: white; border: none; border-radius: 3rem; padding: 0.85rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.1s; white-space: nowrap; }
+  .btn-primary:hover { background: var(--rich-brown); transform: translateY(-1px); }
+  .btn-primary svg { width: 15px; height: 15px; }
+
+  /* SPEAKER */
+  .speaker-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+  @media (max-width: 700px) { .speaker-layout { grid-template-columns: 1fr; } .nav-links { display: none; } }
+  .speaker-topics { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
+  .topic-chip { display: flex; align-items: center; gap: 0.65rem; background: white; border: 1px solid var(--warm-tan); border-radius: 0.75rem; padding: 0.75rem 1rem; }
+  .topic-chip svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .topic-chip span { font-size: 0.875rem; color: var(--text-main); }
+  .speaker-contact { background: var(--pale-blush); border: 1px solid #E8C5B0; border-radius: 1.25rem; padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem; }
+  .speaker-contact h3 { font-family: 'Lora', serif; font-size: 1.1rem; color: var(--rich-brown); }
+  .speaker-contact p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; }
+  .btn-blush { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--blush); color: white; border: none; border-radius: 3rem; padding: 0.85rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; cursor: pointer; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+  .btn-blush:hover { background: #b5663f; }
+  .btn-blush svg { width: 15px; height: 15px; }
+
+  /* TRANSITION BAND */
+  .transition-band { background: var(--warm-sand); padding: 4rem 2rem; }
+  .transition-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  @media (max-width: 640px) { .transition-inner { grid-template-columns: 1fr; } }
+  .transition-band h3 { font-family: 'Lora', serif; font-size: clamp(1.3rem, 2.5vw, 1.7rem); color: var(--rich-brown); margin-bottom: 0.75rem; line-height: 1.35; }
+  .transition-band p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+  .transition-stats { display: flex; flex-direction: column; gap: 1rem; }
+  .t-stat { display: flex; align-items: center; gap: 1rem; background: white; border: 1px solid var(--warm-tan); border-radius: 0.85rem; padding: 1rem 1.25rem; }
+  .t-stat-num { font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 600; color: var(--rich-brown); min-width: 48px; }
+  .t-stat-label { font-size: 0.825rem; color: var(--text-muted); line-height: 1.4; }
+
+  /* DONATE */
+  .donate-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+  @media (max-width: 700px) { .donate-layout { grid-template-columns: 1fr; } }
+  .donate-why { display: flex; flex-direction: column; gap: 1rem; }
+  .why-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .why-icon { width: 38px; height: 38px; border-radius: 0.65rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .why-item h4 { font-size: 0.9rem; font-weight: 500; color: var(--rich-brown); margin-bottom: 0.2rem; }
+  .why-item p { font-size: 0.825rem; color: var(--text-muted); line-height: 1.55; }
+  .donate-card { background: white; border: 1px solid var(--warm-tan); border-radius: 1.25rem; padding: 1.75rem; }
+  .donate-card h3 { font-family: 'Lora', serif; font-size: 1.1rem; color: var(--rich-brown); margin-bottom: 0.4rem; }
+  .donate-card > p { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .amount-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-bottom: 1rem; }
+  .amount-btn { background: var(--warm-cream); border: 1.5px solid var(--warm-tan); border-radius: 0.6rem; padding: 0.65rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; color: var(--text-main); cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+  .amount-btn:hover, .amount-btn.selected { border-color: var(--deep-sage); background: #EFF6F0; color: var(--deep-sage); }
+  .custom-amount { width: 100%; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; color: var(--text-main); background: var(--warm-cream); border: 1.5px solid var(--warm-tan); border-radius: 0.6rem; padding: 0.65rem 0.9rem; outline: none; margin-bottom: 1rem; transition: border-color 0.2s; }
+  .custom-amount:focus { border-color: var(--deep-sage); background: white; }
+  .btn-donate { width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: var(--rich-brown); color: white; border: none; border-radius: 3rem; padding: 0.9rem; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: background 0.2s; }
+  .btn-donate:hover { background: var(--deep-amber); }
+  .donate-note { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 0.75rem; }
+
+  footer { background: var(--rich-brown); color: rgba(255,255,255,0.6); padding: 2.5rem 2rem; text-align: center; }
+  footer .footer-logo { font-family: 'Lora', serif; color: white; font-size: 1.1rem; margin-bottom: 0.75rem; }
+  footer .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+  footer a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  footer a:hover { color: white; }
+  .footer-note { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3D6B42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"/>
+      <line x1="12" y1="9" x2="12" y2="3"/><line x1="12" y1="3" x2="9" y2="1"/><line x1="12" y1="3" x2="15" y2="1"/>
+      <line x1="14.6" y1="9.8" x2="19" y2="6"/><line x1="19" y1="6" x2="22" y2="7"/><line x1="19" y1="6" x2="20" y2="3"/>
+      <line x1="9.4" y1="9.8" x2="5" y2="6"/><line x1="5" y1="6" x2="2" y2="7"/><line x1="5" y1="6" x2="4" y2="3"/>
+      <line x1="12" y1="15" x2="12" y2="21"/><line x1="12" y1="21" x2="9.5" y2="23"/><line x1="12" y1="21" x2="14.5" y2="23"/>
+    </svg>
+    <div class="logo-text"><span>Brain</span> Bee Initiative</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">About</a></li>
+    <li><a href="#">Programs</a></li>
+    <li><a href="#" class="active">Get Involved</a></li>
+    <li><a href="#" class="nav-cta">Support Us</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="section-label">Get involved</div>
+  <h1>There's a place for you here</h1>
+  <p class="lead">Whether you want to teach, inspire, or simply support a cause you believe in — every form of involvement helps us grow and serve more people.</p>
+</div>
+
+<div class="jump-links">
+  <a href="#tutor" class="jump-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+    Become a tutor
+  </a>
+  <a href="#speaker" class="jump-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    Guest speaker
+  </a>
+  <a href="#donate" class="jump-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    Donate
+  </a>
+</div>
+
+<!-- TUTOR -->
+<div class="involve-section" id="tutor">
+  <div class="involve-header">
+    <div class="involve-icon-wrap" style="background: #EFF6F0;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3D6B42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+    </div>
+    <div class="involve-header-text">
+      <div class="section-label">Tutors</div>
+      <h2>Become a tutor</h2>
+    </div>
+  </div>
+  <p class="involve-intro">Are you a USA Brain Bee competitor with a passion for neuroscience and teaching? We'd love to have you. Tutors are the backbone of our program — sharing their expertise and competitive experience with the next generation of Brain Bee participants.</p>
+
+  <div class="perks-grid">
+    <div class="perk-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#3D6B42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      <h4>Deepen your knowledge</h4>
+      <p>Teaching is one of the best ways to solidify your own understanding of neuroscience.</p>
+    </div>
+    <div class="perk-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <h4>Flexible & remote</h4>
+      <p>All sessions are conducted online — tutor from anywhere, on a schedule that works for you.</p>
+    </div>
+    <div class="perk-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#C97B5A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <h4>Earn compensation</h4>
+      <p>Tutors receive a share of session revenue, with the remainder going toward our elder programs.</p>
+    </div>
+    <div class="perk-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <h4>Join our community</h4>
+      <p>Become part of a network of former competitors who share your love of neuroscience.</p>
+    </div>
+  </div>
+
+  <div class="apply-card">
+    <div class="apply-card-text">
+      <h3>Ready to apply?</h3>
+      <p>Our application takes about 5 minutes. We'll ask about your Brain Bee background, the subjects you're most confident teaching, and your availability.</p>
+    </div>
+    <a href="#" class="btn-primary">
+      Apply to tutor
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- SPEAKER -->
+<div class="involve-section" id="speaker">
+  <div class="involve-header">
+    <div class="involve-icon-wrap" style="background: var(--pale-blush);">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C97B5A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    <div class="involve-header-text">
+      <div class="section-label">Guest speakers</div>
+      <h2>Share your expertise</h2>
+    </div>
+  </div>
+  <p class="involve-intro">Are you a neuroscientist, clinician, researcher, or educator with something valuable to share? Guest speakers bring real-world context to our curriculum and give students a window into what a life in neuroscience can look like.</p>
+
+  <div class="speaker-layout">
+    <div>
+      <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem;">We welcome speakers across a wide range of topics, including:</p>
+      <div class="speaker-topics">
+        <div class="topic-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3D6B42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><line x1="12" y1="9" x2="12" y2="3"/><line x1="12" y1="3" x2="9" y2="1"/><line x1="12" y1="3" x2="15" y2="1"/><line x1="14.6" y1="9.8" x2="19" y2="6"/><line x1="9.4" y1="9.8" x2="5" y2="6"/><line x1="12" y1="15" x2="12" y2="21"/></svg>
+          <span>Neuroscience research & discovery</span>
+        </div>
+        <div class="topic-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span>Clinical neurology & psychiatry</span>
+        </div>
+        <div class="topic-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C97B5A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <span>Cognitive health & aging</span>
+        </div>
+        <div class="topic-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <span>Neuroanatomy & imaging</span>
+        </div>
+        <div class="topic-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3A5BA0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <span>Careers in neuroscience</span>
+        </div>
+        <div class="topic-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>Other — we're open to proposals</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="speaker-contact">
+      <h3>Interested in speaking?</h3>
+      <p>Sessions are typically 30–60 minutes and held online. Get in touch and we'll follow up to discuss timing, format, and topic.</p>
+      <a href="#" class="btn-blush">
+        Get in touch
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- TRANSITION BAND -->
+<div class="transition-band">
+  <div class="transition-inner">
+    <div>
+      <h3>Two programs, one source of funding</h3>
+      <p>Every dollar raised — whether through tutoring revenue or direct donations — serves a dual purpose. It keeps our youth program accessible and builds toward a future where older adults can participate in neuroscience competitions for free.</p>
+    </div>
+    <div class="transition-stats">
+      <div class="t-stat">
+        <div class="t-stat-num">22</div>
+        <div class="t-stat-label">sessions in our structured Brain Bee prep curriculum</div>
+      </div>
+      <div class="t-stat">
+        <div class="t-stat-num">13</div>
+        <div class="t-stat-label">national competitors behind the initiative</div>
+      </div>
+      <div class="t-stat">
+        <div class="t-stat-num">$0</div>
+        <div class="t-stat-label">cost to participate in our future elder program</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DONATE -->
+<div class="involve-section" id="donate">
+  <div class="involve-header">
+    <div class="involve-icon-wrap" style="background: #FEF9EE;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    </div>
+    <div class="involve-header-text">
+      <div class="section-label">Donations</div>
+      <h2>Support the mission</h2>
+    </div>
+  </div>
+  <p class="involve-intro">If our mission resonates with you — preparing young neuroscience enthusiasts while building toward free cognitive health programs for older adults — your donation makes a direct difference.</p>
+
+  <div class="donate-layout">
+    <div class="donate-why">
+      <div class="why-item">
+        <div class="why-icon" style="background: #EFF6F0;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3D6B42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div>
+          <h4>Fund tutoring access</h4>
+          <p>Donations allow us to offer sliding-scale pricing to students who couldn't otherwise afford preparation support.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon" style="background: var(--pale-blush);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C97B5A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <div>
+          <h4>Build the elder program</h4>
+          <p>Your contribution directly accelerates the development of our future cognitive health competition for older adults.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon" style="background: #FEF9EE;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div>
+          <h4>Spread a passion</h4>
+          <p>You're helping a group of young people share what they love — and that ripple effect is hard to put a price on.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="donate-card">
+      <h3>Make a donation</h3>
+      <p>Choose an amount or enter your own. All donations go directly toward program development.</p>
+      <div class="amount-grid">
+        <button class="amount-btn" onclick="selectAmount(this)">$10</button>
+        <button class="amount-btn" onclick="selectAmount(this)">$25</button>
+        <button class="amount-btn selected" onclick="selectAmount(this)">$50</button>
+        <button class="amount-btn" onclick="selectAmount(this)">$100</button>
+        <button class="amount-btn" onclick="selectAmount(this)">$250</button>
+        <button class="amount-btn" onclick="selectAmount(this)">$500</button>
+      </div>
+      <input class="custom-amount" type="text" placeholder="Or enter a custom amount…" oninput="clearSelected()">
+      <button class="btn-donate">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Donate now
+      </button>
+      <p class="donate-note">Secure checkout — you'll be directed to our payment page.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Brain Bee Initiative</div>
+  <div class="footer-links">
+    <a href="#">About</a><a href="#">Programs</a><a href="#">Volunteer</a><a href="#">Contact</a><a href="#">Donate</a>
+  </div>
+  <p class="footer-note">Brain Bee Initiative is a community organization. Name subject to change.</p>
+</footer>
+
+<script>
+  function selectAmount(btn) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    document.querySelector('.custom-amount').value = '';
+  }
+  function clearSelected() {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
+  }
+  document.querySelectorAll('.jump-link').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
