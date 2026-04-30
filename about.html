@@ -453,23 +453,40 @@ When I have time to do stuff, I play clarinet and enjoy it enough to make myself
   <p class="footer-note">Aplysia Academy is a community organization.</p>
 </footer>
 <script>
-  document.querySelectorAll('.team-toggle').forEach(toggle => {
+    document.querySelectorAll('.team-toggle').forEach(toggle => {
     toggle.addEventListener('click', () => {
       const card = toggle.closest('.team-card');
       const isOpen = card.classList.contains('active');
-/*
+
+      if (isOpen) {
+        // CLOSE the card
+        card.classList.remove('active');
+        toggle.textContent = 'Read more';
+      } else {
+        // OPEN the card
+        card.classList.add('active');
+        toggle.textContent = 'Show less';
+      }
+    });
+  });
+/*  document.querySelectorAll('.team-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const card = toggle.closest('.team-card');
+      const isOpen = card.classList.contains('active');
+
       // Optional: close others (accordion behavior)
       document.querySelectorAll('.team-card').forEach(c => {
         c.classList.remove('active');
         c.querySelector('.team-toggle').textContent = 'Read more';
       });
-*/
+
       if (!isOpen) {
         card.classList.add('active');
         toggle.textContent = 'Show less';
       }
     });
   });
+*/ 
 </script>
 </body>
 </html>
