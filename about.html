@@ -457,13 +457,13 @@ When I have time to do stuff, I play clarinet and enjoy it enough to make myself
     toggle.addEventListener('click', () => {
       const card = toggle.closest('.team-card');
       const isOpen = card.classList.contains('active');
-
+/*
       // Optional: close others (accordion behavior)
       document.querySelectorAll('.team-card').forEach(c => {
         c.classList.remove('active');
-        /* c.querySelector('.team-toggle').textContent = 'Read more'; */
+        c.querySelector('.team-toggle').textContent = 'Read more';
       });
-
+*/
       if (!isOpen) {
         card.classList.add('active');
         toggle.textContent = 'Show less';
