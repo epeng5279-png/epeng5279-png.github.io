@@ -610,36 +610,7 @@ const brainfactsSessions = [
 ];
 
 const container = document.getElementById('brainfacts-sessions');
-const container2 = document.getElementById('anatomy-sessions');
- anatomySessions.forEach(s => {
-  const wrapper = document.createElement('div');
-  const row = document.createElement('div');
-  row.className = 'session-row';
-  row.style.cursor = 'pointer';
-  row.innerHTML = `
-    <div class="session-num">${s.num}</div>
-    <div class="session-day">Day ${s.day}</div>
-    <div class="session-title">${s.title}</div>
-    <button class="expand-btn" aria-label="Show chapters">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-    </button>
-    <span class="session-tag tag-brainfacts">Anatomy</span>
-    `;
-    const detail = document.createElement('div');
-  detail.className = 'chapter-list';
-  detail.innerHTML = `<ul>${s.chapters.map(c => `<li>${c}</li>`).join('')}</ul>`;
-
-  const btn = row.querySelector('.expand-btn');
-  row.addEventListener('click', () => {
-    const isOpen = detail.classList.toggle('open');
-    btn.classList.toggle('open', isOpen);
-  });
-
-  wrapper.appendChild(row);
-  wrapper.appendChild(detail);
-  container.appendChild(wrapper);
- });
-brainfactsSessions.forEach(s => {
+ brainfactsSessions.forEach(s => {
   const wrapper = document.createElement('div');
 
   const row = document.createElement('div');
@@ -669,6 +640,35 @@ brainfactsSessions.forEach(s => {
   wrapper.appendChild(detail);
   container.appendChild(wrapper);
 });
+const container = document.getElementById('anatomy-sessions');
+ anatomySessions.forEach(s => {
+  const wrapper = document.createElement('div');
+  const row = document.createElement('div');
+  row.className = 'session-row';
+  row.style.cursor = 'pointer';
+  row.innerHTML = `
+    <div class="session-num">${s.num}</div>
+    <div class="session-day">Day ${s.day}</div>
+    <div class="session-title">${s.title}</div>
+    <button class="expand-btn" aria-label="Show chapters">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <span class="session-tag tag-brainfacts">Anatomy</span>
+    `;
+    const detail = document.createElement('div');
+  detail.className = 'chapter-list';
+  detail.innerHTML = `<ul>${s.chapters.map(c => `<li>${c}</li>`).join('')}</ul>`;
+
+  const btn = row.querySelector('.expand-btn');
+  row.addEventListener('click', () => {
+    const isOpen = detail.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+  });
+
+  wrapper.appendChild(row);
+  wrapper.appendChild(detail);
+  container.appendChild(wrapper);
+ });
 </script>
 
 </body>
