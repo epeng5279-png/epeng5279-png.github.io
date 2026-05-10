@@ -366,8 +366,8 @@
         <div class="group-title" style="color: #3A5BA0;">Neuroanatomy & Histology</div>
         <div class="group-count">Sessions 18–21 · Days 35–41</div>
       </div>
-      <div class="sessions-grid">
-        <div class="session-row">
+      <div class="sessions-grid" id="anatomy-sessions">
+        <!--<div class="session-row">
           <div class="session-num">18</div>
           <div class="session-day">Day 35</div>
           <div class="session-title">2D Cross-Sectional Neuroanatomy</div>
@@ -390,7 +390,7 @@
           <div class="session-day">Day 41</div>
           <div class="session-title">Histology — Cell Types & Neural Tissue</div>
           <span class="session-tag tag-anatomy">Anatomy</span>
-        </div>
+        </div>--->
       </div>
     </div>
 
@@ -545,6 +545,10 @@
 
 
 <script>
+const anatomySessions = [{num: 18, day: 35, title: "2D Cross-Sectional Anatomy", chapters: []},
+                        {num: 19, day: 37, title: "3D Brain Models & Spatial Orientations", chapters: []},
+                        {num: 20, day: 39, title: "Blood Vessels & Spinal Cord Anatomy", chapters: []},
+ {num: 21, day: 41, title: "Histology - Cell Types & Neural Tissue", chapters: []}];
 const brainfactsSessions = [
   { num: 1,  day: 1,  title: "Introduction to Neuroscience & Brain Overview", chapters: ["Introduction", "Ch. 1 - Brain Basics"] },
   { num: 2,  day: 3,  title: "Sensory Systems", chapters: ["Ch. 2 - Senses & Perception"] },
@@ -606,7 +610,21 @@ const brainfactsSessions = [
 ];
 
 const container = document.getElementById('brainfacts-sessions');
-
+const container2 = document.getElementById('anatomy-sessions');
+ anatomySessions.forEach(s => {
+  const wrapper = document.createElement('div');
+  const row = document.createElement('div');
+  row.className = 'session-row';
+  row.style.cursor - 'pointer';
+  row.innerHTML = `
+    <div class="session-num">${s.num}</div>
+    <div class="session-day">Day ${s.day}</div>
+    <div class="session-title">${s.title}</div>
+    <button class="expand-btn" aria-label="Show chapters">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <span class="session-tag tag-brainfacts">Anatomy</span>;
+    `}
 brainfactsSessions.forEach(s => {
   const wrapper = document.createElement('div');
 
