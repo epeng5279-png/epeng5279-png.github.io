@@ -609,7 +609,7 @@ const brainfactsSessions = [
   { num: 17, day: 33, title: "Neurocience in Health & Society", chapters: ["Ch. 17 - Solving Human Problems", "Ch. 18 - Neuroscience in Society"] },
 ];
 
-const container = document.getElementById('brainfacts-sessions');
+let container = document.getElementById('brainfacts-sessions');
  brainfactsSessions.forEach(s => {
   const wrapper = document.createElement('div');
 
@@ -640,7 +640,7 @@ const container = document.getElementById('brainfacts-sessions');
   wrapper.appendChild(detail);
   container.appendChild(wrapper);
 });
-const container = document.getElementById('anatomy-sessions');
+container = document.getElementById('anatomy-sessions');
  anatomySessions.forEach(s => {
   const wrapper = document.createElement('div');
   const row = document.createElement('div');
